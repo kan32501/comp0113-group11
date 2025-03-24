@@ -1,0 +1,19 @@
+# ninja log v5
+2	749	1742832923539335756	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	48b7bf424e451e3
+749	942	1742832923729186991	/Users/amanda/Documents/UCL_Sem2/VirtualEnvironments/comp0113-group11/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j401l2z/obj/arm64-v8a/libgame.so	64a33c22534a31a0
+3	602	1742832923393879395	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7aa93495472cc6e1
+4	578	1742832923369979460	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8ea411f1b1c61b7d
+3	692	1742832923484150351	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	2a283793530226cd
+4	542	1742832923333392870	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1c49f924de90511b
+2	541	1742832923332063038	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ead34a56f0ef9e70
+3	535	1742832923326867793	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	f1d1be6b5decdfcf
+3	535	1742832923324695628	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	913dd8644a006632
+4	724	1742836195643848954	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	f1d1be6b5decdfcf
+3	724	1742836195645708332	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ead34a56f0ef9e70
+5	724	1742836195643814538	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	913dd8644a006632
+6	728	1742836195650970840	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1c49f924de90511b
+6	750	1742836195673676459	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8ea411f1b1c61b7d
+4	767	1742836195691312194	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7aa93495472cc6e1
+4	841	1742836195764674931	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	2a283793530226cd
+3	892	1742836195814867425	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	48b7bf424e451e3
+892	1073	1742836195994062075	/Users/amanda/Documents/UCL_Sem2/VirtualEnvironments/comp0113-group11/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j401l2z/obj/arm64-v8a/libgame.so	64a33c22534a31a0
