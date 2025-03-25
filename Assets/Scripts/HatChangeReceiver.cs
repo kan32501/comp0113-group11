@@ -40,7 +40,6 @@ public class HatChangeReceiver : MonoBehaviour
             if (hatAvatar && msg.hatIndex >= 0 && msg.hatIndex < hatAvatar.hats.Length)
             {
                 hatAvatar.SetHat(hatAvatar.hats[msg.hatIndex]);
-                Debug.Log($"[HatChangeReceiver] Changed hat to index {msg.hatIndex}");
             }
         }
     }

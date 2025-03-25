@@ -643,6 +643,7 @@ GameObject:
   - component: {fileID: 56828161662155690}
   - component: {fileID: -1850806264314411369}
   - component: {fileID: 9162287201156605446}
+  - component: {fileID: 936510000091557499}
   m_Layer: 0
   m_Name: Simple Avatar
   m_TagString: Untagged
@@ -777,6 +778,18 @@ MonoBehaviour:
   OnRightGripUpdate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &936510000091557499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2889219270148802569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e490fd8a179c45ca9cc3360a5b37dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2910409666545816603
 GameObject:
   m_ObjectHideFlags: 0
