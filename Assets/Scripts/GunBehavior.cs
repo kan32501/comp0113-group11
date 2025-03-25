@@ -26,7 +26,7 @@ public class GunBehavior : MonoBehaviour
         lineRenderer.enabled = false;
         context = NetworkScene.Register(this);
 
-        // NEW: Bind right trigger
+        //Bind right trigger to override
         triggerAction = new InputAction(type: InputActionType.Value, binding: "<XRController>{RightHand}/trigger");
         triggerAction.Enable();
     }
@@ -66,7 +66,7 @@ public class GunBehavior : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log($"Hit {hit.collider.name}");
-                // You could send a hat-change RPC here!
+                //Send a hat-change RPC here!
             }
         }
 
