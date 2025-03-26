@@ -4,6 +4,7 @@ using Ubiq.Messaging;
 using Ubiq.Avatars;
 using Ubiq.Rooms;
 
+//
 public class HatGunBehavior : MonoBehaviour
 {
     public LineRenderer lineRenderer;
@@ -32,10 +33,10 @@ public class HatGunBehavior : MonoBehaviour
     {
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
-        context = NetworkScene.Register(this);
-        roomClient = NetworkScene.Find(this).GetComponentInChildren<RoomClient>();
+        context = NetworkScene.Register(this); // Do it 2x?*
+        roomClient = NetworkScene.Find(this).GetComponentInChildren<RoomClient>(); 
 
-        // Bind right trigger
+        // Bind right trigger to override
         triggerAction = new InputAction(type: InputActionType.Value, binding: "<XRController>{RightHand}/trigger");
         triggerAction.Enable();
     }
@@ -58,10 +59,12 @@ public class HatGunBehavior : MonoBehaviour
     public void Fire()
     {
         FireGun();
-        Debug.Log("HAT GUN FIRED");
     }
 
+    
     private void FireGun()
+    // Casts ray/firing visuals
+    // Detects player hits and sends message to change the hat
     {
         Vector3 start = gunMuzzle.position;
         Vector3 direction = gunMuzzle.forward;
@@ -73,7 +76,7 @@ public class HatGunBehavior : MonoBehaviour
 
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log($"Hit player: {hit.collider.name}");
+                Debug.Log($"Hit player: {hit.collider.name}"); // if max tests
 
                 var avatar = hit.collider.GetComponentInParent<Ubiq.Avatars.Avatar>();
                 if (avatar != null && avatar.Peer != null)
@@ -87,11 +90,11 @@ public class HatGunBehavior : MonoBehaviour
 
                     if (hatCount > 1)
                     {
-                        int newHatIndex = Random.Range(0, hatCount);
+                        int newHatIndex = Random.Range(0, hatCount); // New Hat each time
 
                         var msg = new HatChangeMessage
                         {
-                            targetPeerId = avatar.Peer["uuid"], //meta data stored in strings for ubiq
+                            targetPeerId = avatar.Peer["uuid"], // Meta data stored in strings for ubiq
                             hatIndex = newHatIndex
                         };
 
@@ -106,6 +109,8 @@ public class HatGunBehavior : MonoBehaviour
     }
 
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
+    // Only messages related to firing
+    // HatChangeReceiver handles the hat change message
     {
         // Check which type of message it is
         var json = message.ToString();
@@ -114,7 +119,6 @@ public class HatGunBehavior : MonoBehaviour
             var ray = message.FromJson<RayMessage>();
             DrawRay(ray.start, ray.end);
         }
-        // Let HatChangeReceiver handle the hat change message
     }
 
     private void DrawRay(Vector3 start, Vector3 end)

@@ -34,13 +34,12 @@ public class HatChangeReceiver : MonoBehaviour
     {
         var msg = message.FromJson<HatChangeMessage>();
 
-        // Only act if the message is for this player
+        // Only act if the message is for this player* DELETE?
         if (msg.targetPeerId == roomClient.Me["uuid"] && avatar.IsLocal)
         {
             if (hatAvatar && msg.hatIndex >= 0 && msg.hatIndex < hatAvatar.hats.Length)
             {
                 hatAvatar.SetHat(hatAvatar.hats[msg.hatIndex]);
-                Debug.Log($"[HatChangeReceiver] Changed hat to index {msg.hatIndex}");
             }
         }
     }
