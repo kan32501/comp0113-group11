@@ -25,11 +25,23 @@ public class HatNetworkedGun : MonoBehaviour
         grabInteractable.activated.AddListener(OnActivate);
         grabInteractable.deactivated.AddListener(OnDeactivate);
     }
+    Vector3 lastPosition;
 
     void Update() // ADDED
     {
         // Regularly send the current state to ensure synch
         context.SendJson(new GunMessage() { isGrabbed = isGrabbed, isFiring = isFiring });
+
+        if(lastPosition != transform.localPosition && isGrabbed)
+        {
+            lastPosition = transform.localPosition;
+            context.SendJson(new GunMessage()
+            {
+                position = transform.localPosition
+            });
+        }
+
+    
     }
 
     void OnGrab(SelectEnterEventArgs args)
@@ -78,11 +90,17 @@ public class HatNetworkedGun : MonoBehaviour
                 gunBehavior.Fire();
             }
         }
+
+        transform.localPosition = gunMessage.position;
+
+        // Make sure the logic in Update doesn't trigger as a result of this message
+        lastPosition = transform.localPosition;
     }
 
     private struct GunMessage
     {
         public bool isGrabbed;
         public bool isFiring;
+        public Vector3 position;
     }
 }
