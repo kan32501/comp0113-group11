@@ -7,55 +7,60 @@ public class HatNetworkedGun : MonoBehaviour
     private HatGunBehavior gunBehavior;
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private NetworkContext context;
+    private bool isGrabbed = false;
+    private bool isFiring = false;
 
     void Start()
     {
         gunBehavior = GetComponent<HatGunBehavior>();
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        context = NetworkScene.Register(this);
+        context = NetworkScene.Register(this); // Register w Ubiq
 
         // Initially disable gun shooting until grabbed
         gunBehavior.enabled = false;
 
-        // Subscribe to grab events
+        // Subscribe to grab and activation events
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
         grabInteractable.activated.AddListener(OnActivate);
         grabInteractable.deactivated.AddListener(OnDeactivate);
     }
 
+    void Update() // ADDED
+    {
+        // Regularly send the current state to ensure synch
+        context.SendJson(new GunMessage { isGrabbed = isGrabbed, isFiring = isFiring });
+    }
+
     void OnGrab(SelectEnterEventArgs args)
     {
         // Enable gun behavior when grabbed
         gunBehavior.enabled = true;
-        // Notify others that this gun has been grabbed
-        context.SendJson(new GunMessage { isGrabbed = true });
+        isGrabbed = true;
     }
 
     void OnRelease(SelectExitEventArgs args)
     {
         // Disable gun behavior when released
         gunBehavior.enabled = false;
-        // Notify others that this gun has been released
-        context.SendJson(new GunMessage { isGrabbed = false });
+        isGrabbed = false;
     }
 
     void OnActivate(ActivateEventArgs args)
     {
-        // Trigger gun firing when activated (e.g., trigger pulled)
+        // Trigger gun firing when activated 
         gunBehavior.Fire();
-        // Notify others about the firing action
-        context.SendJson(new GunMessage { isFiring = true });
+        isFiring = true;
     }
 
     void OnDeactivate(DeactivateEventArgs args)
     {
-        // Handle deactivation if needed (e.g., stop firing)
-        // Notify others that firing has stopped
-        context.SendJson(new GunMessage { isFiring = false });
+        // Handle stop firing
+        isFiring = false;
     }
 
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
+    // Syncs gun state - should i only send messages with a state change?*
     {
         var gunMessage = message.FromJson<GunMessage>();
 
@@ -63,10 +68,15 @@ public class HatNetworkedGun : MonoBehaviour
         if (gunMessage.isGrabbed.HasValue)
         {
             gunBehavior.enabled = gunMessage.isGrabbed.Value;
+            isGrabbed = gunMessage.isGrabbed.Value;
         }
-        if (gunMessage.isFiring.HasValue && gunMessage.isFiring.Value)
+        if (gunMessage.isFiring.HasValue)
         {
-            gunBehavior.Fire();
+            isFiring = gunMessage.isFiring.Value;
+            if (isFiring)
+            {
+                gunBehavior.Fire();
+            }
         }
     }
 
