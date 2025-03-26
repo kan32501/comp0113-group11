@@ -29,7 +29,7 @@ public class HatNetworkedGun : MonoBehaviour
     void Update() // ADDED
     {
         // Regularly send the current state to ensure synch
-        context.SendJson(new GunMessage { isGrabbed = isGrabbed, isFiring = isFiring });
+        context.SendJson(new GunMessage() { isGrabbed = isGrabbed, isFiring = isFiring });
     }
 
     void OnGrab(SelectEnterEventArgs args)
@@ -65,14 +65,14 @@ public class HatNetworkedGun : MonoBehaviour
         var gunMessage = message.FromJson<GunMessage>();
 
         // Handle incoming messages to synchronize state
-        if (gunMessage.isGrabbed.HasValue)
+        if (gunMessage.isGrabbed)
         {
-            gunBehavior.enabled = gunMessage.isGrabbed.Value;
-            isGrabbed = gunMessage.isGrabbed.Value;
+            gunBehavior.enabled = gunMessage.isGrabbed;
+            isGrabbed = gunMessage.isGrabbed;
         }
-        if (gunMessage.isFiring.HasValue)
+        if (gunMessage.isFiring)
         {
-            isFiring = gunMessage.isFiring.Value;
+            isFiring = gunMessage.isFiring;
             if (isFiring)
             {
                 gunBehavior.Fire();
@@ -82,7 +82,7 @@ public class HatNetworkedGun : MonoBehaviour
 
     private struct GunMessage
     {
-        public bool? isGrabbed;
-        public bool? isFiring;
+        public bool isGrabbed;
+        public bool isFiring;
     }
 }

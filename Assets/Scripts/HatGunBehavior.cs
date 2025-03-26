@@ -33,8 +33,8 @@ public class HatGunBehavior : MonoBehaviour
     {
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
-        context = NetworkScene.Register(this);
-        roomClient = NetworkScene.Find(this).GetComponentInChildren<RoomClient>();
+        context = NetworkScene.Register(this); // Do it 2x?*
+        roomClient = NetworkScene.Find(this).GetComponentInChildren<RoomClient>(); 
 
         // Bind right trigger to override
         triggerAction = new InputAction(type: InputActionType.Value, binding: "<XRController>{RightHand}/trigger");
