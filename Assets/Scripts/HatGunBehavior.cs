@@ -17,8 +17,8 @@ public class HatGunBehavior : MonoBehaviour
 
     private InputAction triggerAction;
 
-    //private static readonly NetworkId HatGunNetworkId = new NetworkId(12345);
-
+    private static readonly NetworkId HatGunNetworkId = new NetworkId(123456);
+    
     private struct RayMessage
     {
         public Vector3 start;
@@ -35,7 +35,7 @@ public class HatGunBehavior : MonoBehaviour
     {
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
-        context = NetworkScene.Register(this); 
+        context = NetworkScene.Register(this, HatGunNetworkId); 
         roomClient = NetworkScene.Find(this).GetComponentInChildren<RoomClient>(); 
 
         // Bind right trigger to override
@@ -136,6 +136,7 @@ public class HatGunBehavior : MonoBehaviour
         DrawRay(start, end);
         context.SendJson(new RayMessage { start = start, end = end });
     }
+
 
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
     // Only messages related to firing
