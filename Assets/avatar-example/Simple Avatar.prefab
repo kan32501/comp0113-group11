@@ -308,13 +308,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: 2100000, guid: 507fed0338ce65948937cd10a0904a51, type: 2}
-  - {fileID: 2100000, guid: cf7b2a2a4b5c2bb409c794db9d64ff3f, type: 2}
-  - {fileID: 2100000, guid: 33535d2d31f89e846b6ec7c60219cb96, type: 2}
-  - {fileID: 2100000, guid: e8231e5e093c804458795712745c4041, type: 2}
-  - {fileID: 2100000, guid: cfd3cea337b1d7748bc8b181e695e46c, type: 2}
-  - {fileID: 2100000, guid: 541d89427b42b4040b80b215bdd9a767, type: 2}
+  - {fileID: 2100000, guid: 3ecae576307bb4464921309b6c4b8725, type: 2}
+  - {fileID: 2100000, guid: 847cf3edb4a174db8a13f0060801bff2, type: 2}
+  - {fileID: 2100000, guid: 36cccf1d71d03459fa30d6ce867690cb, type: 2}
+  - {fileID: 2100000, guid: b53ab847ca4e94de4beb912511c99c9b, type: 2}
   currentMaterial: {fileID: 0}
-  targetMeshName: Small Body
+  targetMeshNames:
+  - Small Body
+  - Left Hand
+  - Right Hand
 --- !u!114 &5119477797244320930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +472,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8c3f067d97073e844a53d8283b2d3820, type: 2}
-  - {fileID: 2100000, guid: c12dba4db4b10a34ea85b03c5b9263e6, type: 2}
+  - {fileID: 2100000, guid: f5c4e8744f97ef4468f92d8b6072bc15, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -609,6 +611,7 @@ Transform:
   m_Children:
   - {fileID: 8285140704464473154}
   - {fileID: 6004545445406633169}
+  - {fileID: 8443630504198821942}
   m_Father: {fileID: 3415123635699201851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6558620003483027629
@@ -645,7 +648,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7351672965467177383}
-  - {fileID: 8443630504198821942}
   - {fileID: 3330961831188171243}
   - {fileID: 2935257468958721245}
   m_Father: {fileID: 7167737776731436570}
@@ -1109,7 +1111,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3415123635699201851}
+    m_TransformParent: {fileID: 7351672965467177383}
     m_Modifications:
     - target: {fileID: 2648029118020657671, guid: 875c784bd61882141885630fb074cf73, type: 3}
       propertyPath: m_RootOrder
@@ -1125,7 +1127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648029118020657671, guid: 875c784bd61882141885630fb074cf73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000000066145795
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2648029118020657671, guid: 875c784bd61882141885630fb074cf73, type: 3}
       propertyPath: m_LocalRotation.x
